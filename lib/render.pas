@@ -257,9 +257,9 @@ begin
     then
     begin
       mul_vxm(transl(x), centr_tr, pr);
-      right := sin(hfov/2) / cos(hfov/2) * near;
+      right := sin(hfov/2) / cos(hfov/2);
       left := -1*right;
-      top := sin(vfov/2) / cos(vfov/2) * near;
+      top := sin(vfov/2) / cos(vfov/2);
       bottom := -1*top;
       // формирование матрицы отсечения
       // инициализация матрицы нулями
@@ -272,7 +272,7 @@ begin
       clip[3,2] := (top + bottom) / (bottom - top);
       clip[3,3] := (far + near) / (far - near);
       clip[3,4] := 1;
-      clip[4,3] := 2*far / (near-far);
+      clip[4,3] := 2*far*near / (near-far);
       // применение матрицы отсечения
       mul_vxm(pr, clip, pr2);
       // определение видиности вершины
